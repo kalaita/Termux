@@ -7,8 +7,7 @@ echo "=========================================="
 echo
 
 set -e
-
-REPO="https://raw.githubusercontent.com/kalaita/Trux/main"
+REPO="https://raw.githubusercontent.com/kalaita/Termux/main"
 TERMUX_DIR="$HOME/.termux"
 
 touch "$HOME/.hushlogin"
