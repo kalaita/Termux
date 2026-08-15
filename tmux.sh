@@ -12,15 +12,15 @@ BIN_DIR="$HOME_DIR/.local/bin"
 touch "$HOME_DIR/.hushlogin"
 
 curl -fsSL \
-    "https://raw.githubusercontent.com/kalaita/Trux/main/cbashrc" \
+    "https://raw.githubusercontent.com/kalaita/Termux/main/cbashrc" \
     -o "$HOME_DIR/.bashrc"
 
 curl -fsSL \
-    "https://raw.githubusercontent.com/kalaita/Trux/main/ms.sh" \
+    "https://raw.githubusercontent.com/kalaita/Termux/main/ms.sh" \
     -o "$HOME_DIR/ms.sh"
 
 curl -fsSL \
-    "https://raw.githubusercontent.com/kalaita/Trux/main/tmux.conf" \
+    "https://raw.githubusercontent.com/kalaita/Termux/main/tmux.conf" \
     -o "$HOME_DIR/.tmux.conf"
 
 sudo apt update -y
