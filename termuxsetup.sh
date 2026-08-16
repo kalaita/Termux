@@ -18,7 +18,7 @@ pkg update -y
 
 pkg install -y git gh
 
-curl -fsSL "$REPO/tbashrc" -o "$HOME/.bashrc"
+curl -fsSL "$REPO/termuxbashrc" -o "$HOME/.bashrc"
 
 mkdir -p "$TERMUX_DIR"
 
