@@ -10,7 +10,7 @@ HOME_DIR="$HOME"
 BIN_DIR="$HOME_DIR/.local/bin"
 
 curl -fsSL \
-    "https://raw.githubusercontent.com/kalaita/Trux/main/cbashrc" \
+    "https://raw.githubusercontent.com/kalaita/Trux/main/colabbashrc" \
     -o "$HOME_DIR/.bashrc"
 
 curl -fsSL \
