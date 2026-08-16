@@ -10,11 +10,11 @@ HOME_DIR="$HOME"
 BIN_DIR="$HOME_DIR/.local/bin"
 
 curl -fsSL \
-    "https://raw.githubusercontent.com/kalaita/Trux/main/colabbashrc" \
+    "https://raw.githubusercontent.com/kalaita/Termux/main/colabbashrc" \
     -o "$HOME_DIR/.bashrc"
 
 curl -fsSL \
-    "https://raw.githubusercontent.com/kalaita/Trux/main/tmux.conf" \
+    "https://raw.githubusercontent.com/kalaita/Termux/main/tmux.conf" \
     -o "$HOME_DIR/.tmux.conf"
 
 sudo apt update -y
