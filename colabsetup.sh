@@ -44,7 +44,6 @@ sudo dpkg -i "$CLOUDFLARED_DEB" || {
 rm -f "$CLOUDFLARED_DEB"
 
 curl -fsSL https://ollama.com/install.sh | bash
-pip install open-webui
 
 tmux source-file ~/.tmux.conf
 echo ""
