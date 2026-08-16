@@ -9,15 +9,9 @@ echo "=========================================="
 HOME_DIR="$HOME"
 BIN_DIR="$HOME_DIR/.local/bin"
 
-touch "$HOME_DIR/.hushlogin"
-
 curl -fsSL \
     "https://raw.githubusercontent.com/kalaita/Trux/main/cbashrc" \
     -o "$HOME_DIR/.bashrc"
-
-curl -fsSL \
-    "https://raw.githubusercontent.com/kalaita/Trux/main/ms.sh" \
-    -o "$HOME_DIR/ms.sh"
 
 curl -fsSL \
     "https://raw.githubusercontent.com/kalaita/Trux/main/tmux.conf" \
@@ -25,8 +19,6 @@ curl -fsSL \
 
 sudo apt update -y
 sudo apt install -y \
-    p7zip-full \
-    aria2 \
     zstd \
 
 if ! grep -q 'HOME/.local/bin' "$HOME_DIR/.bashrc"; then
@@ -52,6 +44,7 @@ sudo dpkg -i "$CLOUDFLARED_DEB" || {
 rm -f "$CLOUDFLARED_DEB"
 
 curl -fsSL https://ollama.com/install.sh | bash
+pip install open-webui
 
 tmux source-file ~/.tmux.conf
 echo ""
