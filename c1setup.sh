@@ -12,7 +12,7 @@ BIN_DIR="$HOME_DIR/.local/bin"
 touch "$HOME_DIR/.hushlogin"
 
 curl -fsSL \
-    "https://raw.githubusercontent.com/kalaita/Termux/main/cbashrc" \
+    "https://raw.githubusercontent.com/kalaita/Termux/main/c1bashrc" \
     -o "$HOME_DIR/.bashrc"
 
 curl -fsSL \
