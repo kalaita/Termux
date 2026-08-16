@@ -9,7 +9,7 @@ if [ -z "$TMUX" ] && command -v tmux >/dev/null 2>&1; then
         && tmux attach-session -t ksi \
         || tmux new-session -s ksi
 fi
-
+alias 'webui'='pip install open-webui'
 alias 'rm'='rm -rf'
 alias l='ls -CF'
 alias 'c'='clear'
@@ -65,4 +65,4 @@ export CLICOLOR=1
 # Custom LS colors
 export LS_COLORS='di=1;92:ln=1;96:so=1;95:pi=1;93:ex=1;91:*.tar=1;31:*.zip=1;31:*.gz=1;31'
 
-End
+# End
