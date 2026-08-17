@@ -1,0 +1,60 @@
+__ca() {                               if ! command -v colab >/dev/null 2>&1; then
+        echo "Error: colab command not found."
+        return 1
+    fi
+
+    echo "Checking existing Colab sessions..."
+
+    local output session_id status
+
+    output="$(colab sessions 2>&1)"                                       # Find a T4 session first; otherwise use the first session ID.        session_id="$(                         printf '%s\n' "$output" |          awk '                                  BEGIN { IGNORECASE=1 }             /T4/ && match($0, /[0-9a-fA-F]{6,}/) {                                    print substr($0, RSTART, RLENGTH)                                     exit
+            }
+        '
+    )"
+
+    if [ -z "$session_id" ]; then
+        session_id="$(
+            printf '%s\n' "$output" |
+            grep -oE '[0-9a-fA-F]{6,}' |
+            head -n 1
+        )"
+    fi
+
+    if [ -n "$session_id" ]; then
+        echo "Existing session found: $session_id"
+    else
+        echo "No active session found."
+        echo "Creating T4 session..."
+
+        output="$(colab new --gpu T4 2>&1)"
+        status=$?
+
+        printf '%s\n' "$output"
+
+        [ "$status" -ne 0 ] && {
+            echo "Failed to create T4 session."
+            return 1
+        }
+
+        session_id="$(
+            printf '%s\n' "$output" |
+            grep -oE '[0-9a-fA-F]{6,}' |
+            head -n 1
+        )"
+
+        if [ -z "$session_id" ]; then
+            echo "Could not determine session ID."
+            return 1
+        fi
+
+        echo "Session ID: $session_id"
+    fi
+
+    echo "Connecting to Colab: $session_id"
+    exec colab console -s "$session_id"
+}
+
+alias ca='clear && __ca'
+alias cs='clear && colab stop'
+
+ca
