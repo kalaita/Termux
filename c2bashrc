@@ -1,4 +1,5 @@
-__ca() {                               if ! command -v colab >/dev/null 2>&1; then
+__ca() {
+    if ! command -v colab >/dev/null 2>&1; then
         echo "Error: colab command not found."
         return 1
     fi
@@ -7,7 +8,15 @@ __ca() {                               if ! command -v colab >/dev/null 2>&1; th
 
     local output session_id status
 
-    output="$(colab sessions 2>&1)"                                       # Find a T4 session first; otherwise use the first session ID.        session_id="$(                         printf '%s\n' "$output" |          awk '                                  BEGIN { IGNORECASE=1 }             /T4/ && match($0, /[0-9a-fA-F]{6,}/) {                                    print substr($0, RSTART, RLENGTH)                                     exit
+    output="$(colab sessions 2>&1)"
+
+    session_id="$(
+        printf '%s\n' "$output" |
+        awk '
+            BEGIN { IGNORECASE=1 }
+            /T4/ && match($0, /[0-9a-fA-F]{6,}/) {
+                print substr($0, RSTART, RLENGTH)
+                exit
             }
         '
     )"
@@ -31,10 +40,10 @@ __ca() {                               if ! command -v colab >/dev/null 2>&1; th
 
         printf '%s\n' "$output"
 
-        [ "$status" -ne 0 ] && {
+        if [ "$status" -ne 0 ]; then
             echo "Failed to create T4 session."
             return 1
-        }
+        fi
 
         session_id="$(
             printf '%s\n' "$output" |
@@ -54,7 +63,5 @@ __ca() {                               if ! command -v colab >/dev/null 2>&1; th
     exec colab console -s "$session_id"
 }
 
-alias "ca"="clear && __ca"
-alias "cs"="clear && colab stop"
-
-ca
+alias ca='clear && __ca'
+alias cs='clear && colab stop'
